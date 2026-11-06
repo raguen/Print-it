@@ -3,8 +3,7 @@ const bannerText = document.querySelector("#banner p");
 const previousButton = document.querySelector("#banner button.arrow_left");
 const nextButton = document.querySelector("#banner button.arrow_right");
 
-
-
+// Define the slides data
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -24,10 +23,11 @@ const slides = [
 	}
 ]
 
+// Initialize the current slide index
 let currentSlideIndex = 0;
-
+// Select all the dots
 const dots = document.querySelectorAll("#banner .dots .dot");
-
+// Function to update the banner image, text, and dots based on the current slide index
 function showSlide() {
     const slide = slides[currentSlideIndex];
     bannerImage.src = `./assets/images/slideshow/${slide.image}`;
@@ -37,13 +37,15 @@ function showSlide() {
         dot.classList.toggle("dot_selected", index === currentSlideIndex);
 	});
 }
-
+// Add event listeners to the previous and next buttons
 previousButton.addEventListener("click", () => {
+	// Update the current slide index to the previous slide, wrapping around if necessary
     currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
     showSlide();
 });
-
+// Add event listener to the next button
 nextButton.addEventListener("click", () => {
+	// Update the current slide index to the next slide, wrapping around if necessary
     currentSlideIndex = (currentSlideIndex + 1) % slides.length;
     showSlide();
 });
